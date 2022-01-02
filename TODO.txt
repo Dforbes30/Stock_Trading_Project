@@ -1,0 +1,16 @@
+Last Time: 
+
+Implemented a options pricing model
+Plotted Valotilities to get the smile 
+Implemented options pricing model that accounts for changing volatilites for different strikes 
+
+TODO:
+Get Collaborative Software (On Hold)
+Decide what indicators to use:
+MACD
+RSI
+
+Data input into indicators 
+Plot output data
+
+Decide Algos based on indicators
