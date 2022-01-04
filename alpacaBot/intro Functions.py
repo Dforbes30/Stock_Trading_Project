@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
-
-
-import import_ipynb
 import keys
 import alpaca_trade_api as tradeapi
 import time
@@ -15,14 +11,14 @@ import time
 
 secret_key = keys.secret_key
 ID = keys.key_id
-endpoint = keys.endpoint
+endpoint = keys.paper_endpoint
 
 
 
 if __name__ == '__main__':
     api = tradeapi.REST(ID,secret_key,endpoint)
     account = api.get_account()
-    
+
     # Check if our account is restricted from trading.
     if account.trading_blocked:
         print('Account is currently restricted from trading.')
@@ -37,21 +33,21 @@ if __name__ == '__main__':
     # Check our current balance vs. our balance at the last market close
     balance_change = float(account.equity) - float(account.last_equity)
     print(f'Today\'s portfolio balance change: ${balance_change}')
-    
+
     # Get a list of all active assets.
     active_assets = api.list_assets(status='active')
-    
+
     # Filter the assets down to just those on NASDAQ.
     nasdaq_assets = [a for a in active_assets if a.exchange == 'NASDAQ']
     #print(nasdaq_assets)
-    
-    
+
+
     # Check if AAPL is tradable on the Alpaca platform.
     aapl_asset = api.get_asset('AAPL')
     if aapl_asset.tradable:
         print('We can trade AAPL.')
-        
-        
+
+
     clock = api.get_clock()
     print('The market is {}'.format('open.' if clock.is_open else 'closed.'))
 
@@ -72,8 +68,8 @@ if __name__ == '__main__':
     week_close = aapl_bars[-1].c
     percent_change = (week_close - week_open) / week_open * 100
     print('AAPL moved {}% over the last 5 days'.format(percent_change))
-    
-    
+
+
     # Submit a market order to buy 1 share of Apple at market price
     api.submit_order(
         symbol='AAPL',

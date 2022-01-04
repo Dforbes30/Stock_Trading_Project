@@ -1,0 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Jan  1 21:41:03 2022
+
+@author: DFORB
+"""
+plotly
+pandas
+requests
+yfinance
